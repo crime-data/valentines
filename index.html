@@ -19,16 +19,54 @@
         flex-direction: column;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           sans-serif;
-        background: radial-gradient(circle at top, #ffe4ea 0, #ffbfd0 40%, #ff9fbf 100%);
+        background: radial-gradient(
+          circle at top,
+          #ffe4ea 0,
+          #ffbfd0 40%,
+          #ff9fbf 100%
+        );
         color: #b0133b;
         text-align: center;
         overflow: hidden;
-        animation: bg-pulse 6s ease-in-out infinite alternate;
+        animation: page-enter 0.8s ease-out forwards,
+          bg-pulse 6s ease-in-out infinite alternate;
+        cursor: none;
+      }
+
+      body.blackpink {
+        background: radial-gradient(
+          circle at top,
+          #050008 0,
+          #160015 40%,
+          #000000 100%
+        );
+        color: #ffd6f7;
       }
 
       .scene {
         position: relative;
-        padding: 24px 18px 20px;
+        padding: 32px 18px 24px;
+      }
+
+      .theme-toggle {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: none;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.85);
+        color: #b0133b;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(4px);
+      }
+
+      body.blackpink .theme-toggle {
+        background: rgba(0, 0, 0, 0.7);
+        color: #ff8ad6;
       }
 
       h1 {
@@ -55,6 +93,11 @@
         animation: heart-orbit 2.4s ease-in-out infinite;
       }
 
+      body.blackpink .image-wrapper::before,
+      body.blackpink .image-wrapper::after {
+        color: #ff8ad6;
+      }
+
       .image-wrapper::before {
         left: -14px;
         top: 18px;
@@ -74,6 +117,10 @@
         display: block;
       }
 
+      body.blackpink .valentine-image {
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+      }
+
       .floating-heart {
         position: absolute;
         font-size: 18px;
@@ -81,6 +128,10 @@
         opacity: 0.7;
         animation: float-up 6s linear infinite;
         pointer-events: none;
+      }
+
+      body.blackpink .floating-heart {
+        color: #ff9adf;
       }
 
       .floating-heart.small {
@@ -134,6 +185,14 @@
         background: linear-gradient(135deg, #dc3545, #ff5a6a);
       }
 
+      body.blackpink .yes {
+        background: linear-gradient(135deg, #ff4ec3, #ffa1f0);
+      }
+
+      body.blackpink .no {
+        background: linear-gradient(135deg, #222, #444);
+      }
+
       button:hover {
         transform: translateY(-1px) scale(1.03);
         box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
@@ -144,12 +203,174 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
       }
 
+      .audio-volume {
+        margin-top: 16px;
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: #7a1431;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.75);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(6px);
+        transform-origin: center;
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          background 0.2s ease;
+      }
+
+      .audio-volume:hover {
+        transform: translateY(-1px) scale(1.03);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      }
+
+      body.blackpink .audio-volume {
+        color: #ffb8eb;
+        background: rgba(5, 0, 12, 0.8);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+      }
+
+      .audio-volume input[type="range"] {
+        --vol: 60%;
+        width: 140px;
+        height: 4px;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          #ff3b7b 0,
+          #ff3b7b var(--vol),
+          rgba(255, 255, 255, 0.6) var(--vol),
+          rgba(255, 255, 255, 0.3) 100%
+        );
+        outline: none;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+
+      body.blackpink .audio-volume input[type="range"] {
+        background: linear-gradient(
+          90deg,
+          #ff8ad6 0,
+          #ff8ad6 var(--vol),
+          rgba(255, 255, 255, 0.3) var(--vol),
+          rgba(255, 255, 255, 0.1) 100%
+        );
+      }
+
+      .audio-volume input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid #ff3b7b;
+        box-shadow: 0 0 0 4px rgba(255, 59, 123, 0.25);
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      body.blackpink .audio-volume input[type="range"]::-webkit-slider-thumb {
+        border-color: #ff8ad6;
+        box-shadow: 0 0 0 4px rgba(255, 138, 214, 0.35);
+      }
+
+      .audio-volume input[type="range"]:hover::-webkit-slider-thumb {
+        transform: scale(1.18);
+        box-shadow: 0 0 0 6px rgba(255, 59, 123, 0.3);
+      }
+
+      body.blackpink
+        .audio-volume
+        input[type="range"]:hover::-webkit-slider-thumb {
+        box-shadow: 0 0 0 6px rgba(255, 138, 214, 0.45);
+      }
+
+      .audio-volume input[type="range"]::-moz-range-track {
+        height: 4px;
+        border-radius: 999px;
+        background: transparent;
+      }
+
+      .audio-volume input[type="range"]::-moz-range-progress {
+        height: 4px;
+        border-radius: 999px;
+        background: #ff3b7b;
+      }
+
+      body.blackpink .audio-volume input[type="range"]::-moz-range-progress {
+        background: #ff8ad6;
+      }
+
+      .audio-volume input[type="range"]::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid #ff3b7b;
+        box-shadow: 0 0 0 4px rgba(255, 59, 123, 0.25);
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      body.blackpink .audio-volume input[type="range"]::-moz-range-thumb {
+        border-color: #ff8ad6;
+        box-shadow: 0 0 0 4px rgba(255, 138, 214, 0.35);
+      }
+
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 24px;
+        margin-left: -12px;
+        margin-top: -12px;
+        background-image: url("https://files.catbox.moe/q6pkiz.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        z-index: 20;
+      }
+
+      .cursor-particle {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--cp-size, 10px);
+        height: var(--cp-size, 10px);
+        border-radius: 999px;
+        pointer-events: none;
+        opacity: 0.9;
+        background: radial-gradient(
+          circle,
+          var(--cp-color, #ff3b7b) 0,
+          transparent 70%
+        );
+        mix-blend-mode: screen;
+        transform: translate(-50%, -50%);
+        animation: cursor-pop 0.6s ease-out forwards;
+        z-index: 10;
+      }
+
+      body.blackpink .cursor-particle {
+        mix-blend-mode: lighten;
+      }
+
       #message {
         margin-top: 18px;
         font-size: 14px;
         color: #7a1431;
         min-height: 1em;
         animation: fade-in 0.3s ease-out;
+      }
+
+      body.blackpink #message {
+        color: #ffb8eb;
       }
 
       @keyframes float {
@@ -175,6 +396,17 @@
         100% {
           transform: translateY(-120vh) scale(1.1);
           opacity: 0;
+        }
+      }
+
+      @keyframes page-enter {
+        0% {
+          opacity: 0;
+          transform: translateY(12px) scale(0.98);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
         }
       }
 
@@ -218,10 +450,23 @@
           opacity: 1;
         }
       }
+
+      @keyframes cursor-pop {
+        0% {
+          transform: translate(-50%, -50%) scale(0.4);
+          opacity: 0.9;
+        }
+        100% {
+          transform: translate(-50%, -90%) scale(1);
+          opacity: 0;
+        }
+      }
     </style>
   </head>
   <body>
+    <div class="custom-cursor" id="customCursor"></div>
     <div class="scene">
+      <button class="theme-toggle" id="themeToggle">Pink → Blackpink</button>
       <div class="image-wrapper">
         <img
           class="valentine-image"
@@ -239,14 +484,38 @@
         <button class="no" id="noBtn">No</button>
       </div>
       <div id="message"></div>
+      <div class="audio-volume">
+        <span>volume</span>
+        <input
+          type="range"
+          id="volumeSlider"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.6"
+        />
+      </div>
     </div>
+
+    <audio
+      id="bgMusic"
+      src="https://files.catbox.moe/1gt367.mp3"
+      preload="auto"
+      autoplay
+      loop
+    ></audio>
 
     <script>
       const yesBtn = document.getElementById("yesBtn");
       const noBtn = document.getElementById("noBtn");
       const message = document.getElementById("message");
+      const themeToggle = document.getElementById("themeToggle");
+      const bgMusic = document.getElementById("bgMusic");
+      const volumeSlider = document.getElementById("volumeSlider");
+      const customCursor = document.getElementById("customCursor");
 
       let noClickCount = 0;
+      const defaultVolume = 0.6;
 
       const noMessages = [
         "think about it... ",
@@ -256,13 +525,116 @@
         "okay, i’ll wait while you think about it ",
       ];
 
+      const particleColors = ["#ff3b7b", "#ffbfd0", "#ffffff"];
+      let lastParticleTime = 0;
+
+      function playMusic() {
+        if (!bgMusic) return;
+        if (bgMusic.volume === 0) {
+          bgMusic.volume = defaultVolume;
+        }
+        if (bgMusic.paused) {
+          bgMusic
+            .play()
+            .catch(() => {
+              // ignore autoplay restrictions errors
+            });
+        }
+      }
+
+      if (bgMusic) {
+        bgMusic.volume = defaultVolume;
+      }
+
+      if (volumeSlider) {
+        volumeSlider.value = String(defaultVolume);
+        volumeSlider.style.setProperty(
+          "--vol",
+          `${Number(volumeSlider.value) * 100}%`
+        );
+        volumeSlider.addEventListener("input", () => {
+          if (!bgMusic) return;
+          bgMusic.volume = Number(volumeSlider.value);
+          volumeSlider.style.setProperty(
+            "--vol",
+            `${Number(volumeSlider.value) * 100}%`
+          );
+        });
+      }
+
+      // try to start music as soon as possible,
+      // and retry once when user interacts (for autoplay-blocked browsers)
+      window.addEventListener("load", () => {
+        playMusic();
+      });
+
+      document.addEventListener(
+        "click",
+        () => {
+          playMusic();
+        },
+        { once: true }
+      );
+
+      document.addEventListener(
+        "keydown",
+        () => {
+          playMusic();
+        },
+        { once: true }
+      );
+
+      function spawnCursorParticle(x, y) {
+        const particle = document.createElement("span");
+        const size = 6 + Math.random() * 8;
+        const color =
+          particleColors[Math.floor(Math.random() * particleColors.length)];
+
+        particle.className = "cursor-particle";
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.setProperty("--cp-size", `${size}px`);
+        particle.style.setProperty("--cp-color", color);
+
+        document.body.appendChild(particle);
+
+        particle.addEventListener(
+          "animationend",
+          () => {
+            particle.remove();
+          },
+          { once: true }
+        );
+      }
+
+      document.addEventListener("mousemove", (event) => {
+        if (customCursor) {
+          customCursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+        }
+
+        const now = performance.now();
+        if (now - lastParticleTime < 25) return;
+        lastParticleTime = now;
+        spawnCursorParticle(event.clientX, event.clientY);
+      });
+
+      themeToggle.addEventListener("click", () => {
+        const body = document.body;
+        const isBlackpink = body.classList.toggle("blackpink");
+        themeToggle.textContent = isBlackpink
+          ? "Blackpink → Pink"
+          : "Pink → Blackpink";
+      });
+
       yesBtn.addEventListener("click", () => {
+        playMusic();
         message.textContent = "yay! you just made my whole day ";
-        yesBtn.textContent = "YIPPIEEEEEEEE!!";
+        yesBtn.textContent = "my valentine 💌";
         yesBtn.style.transform = "scale(1.08)";
       });
 
       noBtn.addEventListener("click", () => {
+        playMusic();
         noClickCount++;
 
         const index = Math.min(noClickCount - 1, noMessages.length - 1);
@@ -287,4 +659,3 @@
     </script>
   </body>
 </html>
-
